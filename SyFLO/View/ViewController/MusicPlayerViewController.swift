@@ -82,7 +82,8 @@ extension MusicPlayerViewController :  UITableViewDataSource , UITableViewDelega
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "seekBarCell", for: indexPath) as! SeekBarTableViewCell
-           
+            cell.duration.text = viewModel?.timeString(time: TimeInterval((viewModel?.musicINFO!.duration)!))
+            //viewModel?.musicINFO?.duration?.description
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "album_ImageCell", for: indexPath) as! LyricsTableViewCell

@@ -26,11 +26,11 @@ class MusicPlayerViewModel {
             let data = stringData.data(using: String.Encoding.utf8)
             musicINFO = try JSONDecoder().decode(MusicModel.self, from: data!)
             getAlbumImage()
-           
+            
         }catch{
             print("스트링 변환 실패")
         }
-
+        
     }
     
     func getAlbumImage(){
@@ -41,8 +41,19 @@ class MusicPlayerViewModel {
                 self.albumImage.value = UIImage(data: data!)!
             }
         }
-    
+        
     }
-  
+    
+    
+    func timeString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
+        let hour = Int(time) / 3600
+        let minute = Int(time) / 60 % 60
+        let second = Int(time) % 60
+        if( hour == 0 ){
+            return String(format: "%02i:%02i", minute, second)
+        }
+        // return formated string
+        return String(format: "%02i:%02i:%02i", hour, minute, second)
+    }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class LyricsTableViewCell: UITableViewCell {
 
+    
     @IBOutlet var lyrics: UILabel!
     
     override func awakeFromNib() {

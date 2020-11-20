@@ -23,6 +23,7 @@
 		5B5D7F5625659F76003E1BE4 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D7F5525659F76003E1BE4 /* BindingTextField.swift */; };
 		5B5D7F5825659FD8003E1BE4 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D7F5725659FD8003E1BE4 /* MusicPlayerViewController.swift */; };
 		5B5D7F5A2565A035003E1BE4 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D7F592565A035003E1BE4 /* MusicModel.swift */; };
+		5BDA5B5F2567B6C4000CFB57 /* MainMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA5B5E2567B6C4000CFB57 /* MainMusicViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		5B5D7F5525659F76003E1BE4 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
 		5B5D7F5725659FD8003E1BE4 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		5B5D7F592565A035003E1BE4 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		5BDA5B5E2567B6C4000CFB57 /* MainMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMusicViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5D7F5725659FD8003E1BE4 /* MusicPlayerViewController.swift */,
+				5BDA5B5E2567B6C4000CFB57 /* MainMusicViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				5B5D7F38256595F0003E1BE4 /* SceneDelegate.swift in Sources */,
 				5B5D7F5125659F24003E1BE4 /* MusicPlayerViewModel.swift in Sources */,
 				5B530FA52566ABD2006A626A /* AlbumImageTableViewCell.swift in Sources */,
+				5BDA5B5F2567B6C4000CFB57 /* MainMusicViewController.swift in Sources */,
 				5B530FA325668614006A626A /* TitleTableViewCell.swift in Sources */,
 				5B530FA125668575006A626A /* SingerTableViewCell.swift in Sources */,
 			);

@@ -11,6 +11,8 @@ import UIKit
 class SeekBarTableViewCell: UITableViewCell {
     
     @IBOutlet var stackView: UIStackView!
+    @IBOutlet var seekBar: UIProgressView!
+    @IBOutlet var duration: UILabel!
     
     
     override func awakeFromNib() {
