@@ -22,6 +22,8 @@ class MainMusicViewController: UIViewController {
     @IBOutlet var currentTime: UILabel!
     @IBOutlet var finishTime: UILabel!
     
+    @IBOutlet var playBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +62,11 @@ class MainMusicViewController: UIViewController {
         }
     }
     
+    @IBAction func playBtnTapped(_ sender: Any) {
+        print("btn 클릭")
+        viewModel?.musicPlay()
+    }
+
     /*
      // MARK: - Navigation
      

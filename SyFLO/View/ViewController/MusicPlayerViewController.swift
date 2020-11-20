@@ -31,6 +31,9 @@ class MusicPlayerViewController: UIViewController {
         self.title = viewModel?.musicINFO?.album
         tv.delegate = self
         tv.dataSource = self
+        
+        
+        
     }
     
     func bindViewModel(){

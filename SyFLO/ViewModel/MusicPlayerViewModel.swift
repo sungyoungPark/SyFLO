@@ -8,12 +8,16 @@
 
 //import Foundation
 import UIKit
+import AVFoundation
 
 class MusicPlayerViewModel {
     
     let path = "https://grepp-programmers-challenges.s3.ap-northeast-2.amazonaws.com/2020-flo/song.json"
     var musicINFO : MusicModel?
     var albumImage = Dynamic(UIImage())
+   
+    var player:AVPlayer?
+    var playerItem:AVPlayerItem?
     
     init() {
         guard  let url = URL(string: path) else {
@@ -25,7 +29,12 @@ class MusicPlayerViewModel {
             let stringData = try String(contentsOf: url, encoding: .utf8)
             let data = stringData.data(using: String.Encoding.utf8)
             musicINFO = try JSONDecoder().decode(MusicModel.self, from: data!)
+            //print(musicINFO?.file )
             getAlbumImage()
+            
+            //음악 플레이어 설정
+            let playerItem:AVPlayerItem = AVPlayerItem(url: musicINFO!.file!)
+            player = AVPlayer(playerItem: playerItem)
             
         }catch{
             print("스트링 변환 실패")
@@ -56,4 +65,16 @@ class MusicPlayerViewModel {
         return String(format: "%02i:%02i:%02i", hour, minute, second)
     }
     
+    func musicPlay(){
+        //player.rate = 재생속도를 의미함
+        //print(player?.currentItem?.duration.seconds)  //노래 전체 시간 (duration)
+        print(player?.currentItem?.currentTime().seconds) //노래 진행 시간
+        if(player?.rate == 0){
+            player?.play()
+            
+        }
+        else{
+            player?.pause()
+        }
+    }
 }

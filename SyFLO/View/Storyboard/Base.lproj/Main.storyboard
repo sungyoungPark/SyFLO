@@ -181,10 +181,28 @@
                                             <constraint firstItem="Glm-MU-cIP" firstAttribute="height" secondItem="aRt-Cg-pFw" secondAttribute="height" id="9XW-PZ-il6"/>
                                         </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUH-lE-GRL" userLabel="player">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyO-89-Ydh">
                                         <rect key="frame" x="0.0" y="586.66666666666663" width="375" height="103.33333333333337"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    </view>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUH-lE-GRL" userLabel="player">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="103.33333333333333"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyk-u0-8Rt">
+                                                        <rect key="frame" x="164.66666666666666" y="36.666666666666742" width="46" height="30"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="playBtnTapped:" destination="IwA-As-siQ" eventType="touchUpInside" id="7hi-wa-FEp"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="gyk-u0-8Rt" firstAttribute="centerX" secondItem="iUH-lE-GRL" secondAttribute="centerX" id="7WO-RN-W6y"/>
+                                                    <constraint firstItem="gyk-u0-8Rt" firstAttribute="centerY" secondItem="iUH-lE-GRL" secondAttribute="centerY" id="wKZ-ge-d5b"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="rpE-Hn-qBd" firstAttribute="height" secondItem="cBg-Tw-rnJ" secondAttribute="height" multiplier="0.1" id="NTh-ze-s2z"/>
@@ -211,6 +229,7 @@
                         <outlet property="finishTime" destination="hxu-Qv-0fh" id="Qw2-pQ-co0"/>
                         <outlet property="lyricsTV" destination="8Nw-iE-gtL" id="XGP-kN-jbu"/>
                         <outlet property="music_Title" destination="XWP-2T-RPt" id="5n6-Lu-GsL"/>
+                        <outlet property="playBtn" destination="gyk-u0-8Rt" id="DnM-up-IIM"/>
                         <outlet property="progressBar" destination="aRt-Cg-pFw" id="dDU-ga-rJ7"/>
                         <outlet property="singer" destination="HiM-rc-HbK" id="Dd0-My-Cyq"/>
                     </connections>
@@ -465,7 +484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyK-wI-dQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896" y="99"/>
+            <point key="canvasLocation" x="2207" y="-706"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Nk-E2-lVG">
