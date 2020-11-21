@@ -141,8 +141,8 @@
 		5B5D7F4D25659DB5003E1BE4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5B5D7F5725659FD8003E1BE4 /* MusicPlayerViewController.swift */,
 				5BDA5B5E2567B6C4000CFB57 /* MainMusicViewController.swift */,
+				5B5D7F5725659FD8003E1BE4 /* MusicPlayerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

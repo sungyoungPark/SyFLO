@@ -16,7 +16,9 @@ class MainMusicViewController: UIViewController {
     @IBOutlet var singer: UILabel!
     @IBOutlet var album_Image: UIImageView!
     @IBOutlet var lyricsTV: UITableView!
-    @IBOutlet var progressBar: UIView!
+   
+
+    @IBOutlet var progressBar: UISlider!
     
     
     @IBOutlet var currentTime: UILabel!
@@ -46,6 +48,12 @@ class MainMusicViewController: UIViewController {
         self.title = viewModel?.musicINFO?.album
         lyricsTV.delegate = self
         lyricsTV.dataSource = self
+        
+        self.progressBar.maximumValue = Float((viewModel?.musicINFO!.duration)!)
+        self.progressBar.minimumValue = 0
+        //self.progressBar.minimumTrackTintColor = .clear
+        self.progressBar.thumbTintColor = .clear
+        //self.progressBar.
     }
     
     
@@ -56,9 +64,17 @@ class MainMusicViewController: UIViewController {
             viewModel.albumImage.bind { (albumImage) in
                 self.album_Image.image = albumImage
             }
+            viewModel.playPoint.bind { (playPoint) in
+                print(playPoint)
+            
+                self.progressBar.value = playPoint
+            }
+            viewModel.currentPlayTime.bind { (currentPlayTime) in
+                self.currentTime.text = currentPlayTime
+            }
             self.music_Title.text = viewModel.musicINFO?.title
             self.singer.text = viewModel.musicINFO?.singer
-            self.finishTime.text = viewModel.timeString(time: TimeInterval((viewModel.musicINFO!.duration)!))
+            self.finishTime.text = viewModel.timeString(time: TimeInterval(viewModel.musicINFO!.duration!))
         }
     }
     
