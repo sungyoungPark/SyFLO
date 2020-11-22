@@ -52,8 +52,7 @@ class MainMusicViewController: UIViewController {
         self.progressBar.maximumValue = Float((viewModel?.musicINFO!.duration)!)
         self.progressBar.minimumValue = 0
         //self.progressBar.minimumTrackTintColor = .clear
-        self.progressBar.thumbTintColor = .clear
-        //self.progressBar.
+        self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
     
     
