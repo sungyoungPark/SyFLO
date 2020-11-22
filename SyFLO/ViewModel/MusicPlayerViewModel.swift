@@ -17,8 +17,8 @@ class MusicPlayerViewModel {
     
     var musicINFO : MusicModel?
     var albumImage = Dynamic(UIImage())
-    var playPoint = Dynamic(Float())
-    var currentPlayTime = Dynamic(String())
+    var playPoint = Dynamic(Float())  //seekBar에서 현재 진행중인 위치
+    var currentPlayTime = Dynamic(String())  //현재 실행중인 노래의 시간
     var progressTimer : Timer! // 타이머를 위한 변수
     
     var player:AVPlayer? {
@@ -90,12 +90,27 @@ class MusicPlayerViewModel {
         }
     }
     
+    func seekMusic(_ sender: UISlider){
+        progressTimer.invalidate() //seekBar를 움직일때 재생바 움직임을 제어하기 위해
+        currentPlayTime.value = timeString(time: TimeInterval(sender.value))
+        playPoint.value = sender.value
+    }
+    
+    func moveToSeekTime(_ sender: UISlider){
+        player?.seek(to: CMTimeMake(value: Int64(sender.value), timescale: 1)) // seekBar 위치로 노래 이동
+        playPoint.value = Float(Int(sender.value))  //seekBar를 정확한 위치에 넣기위해 소수점을 제거하고 재생점 위치 시킴
+        progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)  //seekMusic에서 invalidate한 것을 다시 시작
+        
+    }
+    
+    
+    
     @objc func setCurrentPlayTime() {
         currentPlayTime.value = timeString(time: TimeInterval((player?.currentItem?.currentTime().seconds)!))
         
-       // let a = Double((player?.currentItem?.currentTime().seconds)!.rounded())
-       // let b = Double((player?.currentItem?.duration.seconds)!.rounded())
-       // print(a/b)
+        // let a = Double((player?.currentItem?.currentTime().seconds)!.rounded())
+        // let b = Double((player?.currentItem?.duration.seconds)!.rounded())
+        // print(a/b)
         playPoint.value = Float((player?.currentItem?.currentTime().seconds)!) //Float(Double((player?.currentItem?.currentTime().seconds)!)/Double((player?.currentItem?.duration.seconds)!))
     }
     

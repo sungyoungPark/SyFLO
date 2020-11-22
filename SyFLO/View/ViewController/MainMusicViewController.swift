@@ -16,8 +16,8 @@ class MainMusicViewController: UIViewController {
     @IBOutlet var singer: UILabel!
     @IBOutlet var album_Image: UIImageView!
     @IBOutlet var lyricsTV: UITableView!
-   
-
+    
+    
     @IBOutlet var progressBar: UISlider!
     
     
@@ -37,7 +37,7 @@ class MainMusicViewController: UIViewController {
         UIApplication.shared.keyWindow?.addSubview(statusBar1)
         UIApplication.shared.statusBarStyle = .lightContent
         //
- 
+        
         self.view.backgroundColor = .black  //바탕화면 검은색으로
         self.navigationController?.navigationBar.barTintColor = .black //네비게이션 바 색깔 변경
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -51,7 +51,6 @@ class MainMusicViewController: UIViewController {
         
         self.progressBar.maximumValue = Float((viewModel?.musicINFO!.duration)!)
         self.progressBar.minimumValue = 0
-        //self.progressBar.minimumTrackTintColor = .clear
         self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
     
@@ -64,8 +63,6 @@ class MainMusicViewController: UIViewController {
                 self.album_Image.image = albumImage
             }
             viewModel.playPoint.bind { (playPoint) in
-                print(playPoint)
-            
                 self.progressBar.value = playPoint
             }
             viewModel.currentPlayTime.bind { (currentPlayTime) in
@@ -81,7 +78,17 @@ class MainMusicViewController: UIViewController {
         print("btn 클릭")
         viewModel?.musicPlay()
     }
-
+    
+    @IBAction func slideProgressBar(_ sender: UISlider) {
+        viewModel?.seekMusic(sender)
+        if sender.isTracking{
+            return
+        }
+        viewModel?.moveToSeekTime(sender)
+    }
+    
+    
+    
     /*
      // MARK: - Navigation
      

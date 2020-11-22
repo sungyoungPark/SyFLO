@@ -123,8 +123,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRt-Cg-pFw" userLabel="progress">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="34.333333333333336"/>
                                                 <subviews>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rfD-9S-pm7">
+                                                    <slider opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rfD-9S-pm7">
                                                         <rect key="frame" x="18" y="2" width="339" height="31"/>
+                                                        <connections>
+                                                            <action selector="slideProgressBar:" destination="IwA-As-siQ" eventType="valueChanged" id="dzB-ED-Mow"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
