@@ -29,7 +29,6 @@ class MainMusicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //상태바 검은 화면으로
         let statusBar1 =  UIView()
         statusBar1.frame = UIApplication.shared.statusBarFrame
@@ -111,15 +110,25 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
             cell.lyrics.text = "hello"
+            cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell2", for: indexPath) as! LyricsTableViewCell
             cell.lyrics.text = "hi"
+            cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
             return cell
         default:
             fatalError()
         }
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("touch")
+        guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "LyricsVC") else {
+            return
+        }
+        self.navigationController?.pushViewController(uvc, animated: false)
+    }
     
 }

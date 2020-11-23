@@ -98,6 +98,7 @@ class MusicPlayerViewModel {
     
     func moveToSeekTime(_ sender: UISlider){
         player?.seek(to: CMTimeMake(value: Int64(sender.value), timescale: 1)) // seekBar 위치로 노래 이동
+        //CMTimeMake(value: Int64(sender.value), timescale: 1) CMTime 형식으로 변환
         playPoint.value = Float(Int(sender.value))  //seekBar를 정확한 위치에 넣기위해 소수점을 제거하고 재생점 위치 시킴
         progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)  //seekMusic에서 invalidate한 것을 다시 시작
         

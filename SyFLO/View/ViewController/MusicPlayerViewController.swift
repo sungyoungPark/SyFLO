@@ -91,7 +91,7 @@ extension MusicPlayerViewController :  UITableViewDataSource , UITableViewDelega
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "album_ImageCell", for: indexPath) as! LyricsTableViewCell
             cell.lyrics.text = viewModel?.musicINFO?.lyrics
-            print(viewModel?.musicINFO?.lyrics)
+            //print(viewModel?.musicINFO?.lyrics)
             return cell
         default:
             fatalError()
