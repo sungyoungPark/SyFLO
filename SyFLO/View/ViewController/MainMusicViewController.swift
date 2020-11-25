@@ -55,7 +55,6 @@ class MainMusicViewController: UIViewController {
     
     
     
-    
     func bindViewModel(){
         if let viewModel = viewModel{
             viewModel.albumImage.bind { (albumImage) in
@@ -66,6 +65,21 @@ class MainMusicViewController: UIViewController {
             }
             viewModel.currentPlayTime.bind { (currentPlayTime) in
                 self.currentTime.text = currentPlayTime
+            }
+            viewModel.show_lyricIndex.bind { (index) in
+                DispatchQueue.main.async {
+                    self.lyricsTV.reloadData()
+                }
+            }
+            viewModel.isFirstLyric.bind { (Bool) in
+                DispatchQueue.main.async {
+                    self.lyricsTV.reloadData()
+                }
+            }
+            viewModel.isLastLyric.bind { (Bool) in
+                DispatchQueue.main.async {
+                    self.lyricsTV.reloadData()
+                }
             }
             self.music_Title.text = viewModel.musicINFO?.title
             self.singer.text = viewModel.musicINFO?.singer
@@ -106,29 +120,37 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
-            cell.lyrics.text = "hello"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
+        
+        if(indexPath.row == 0){
+            cell.lyrics.text = viewModel?.lyrics_List![viewModel!.show_lyricIndex.value].lyric
             cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell2", for: indexPath) as! LyricsTableViewCell
-            cell.lyrics.text = "hi"
+            if(viewModel?.isFirstLyric.value == true){
+                if(viewModel?.isLastLyric.value == true){
+                    cell.lyrics.textColor = .black
+                }
+                else{
+                    cell.lyrics.textColor = .blue
+                }
+            }
+            else{
+                cell.lyrics.textColor = .black
+            }
+        }
+        
+        if(indexPath.row == 1){
+            cell.lyrics.text = viewModel?.lyrics_List![viewModel!.show_lyricIndex.value+1].lyric
             cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
-            return cell
-        default:
-            fatalError()
+            if(viewModel?.isLastLyric.value == true){
+                 cell.lyrics.textColor = .blue
+            }
+            else{
+                cell.lyrics.textColor = .black
+            }
+            
         }
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("touch")
-        guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "LyricsVC") else {
-            return
-        }
-        self.navigationController?.pushViewController(uvc, animated: false)
+        
+        return cell
     }
     
 }

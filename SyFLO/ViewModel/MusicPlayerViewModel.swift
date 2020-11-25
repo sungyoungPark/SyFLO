@@ -19,6 +19,12 @@ class MusicPlayerViewModel {
     var albumImage = Dynamic(UIImage())
     var playPoint = Dynamic(Float())  //seekBar에서 현재 진행중인 위치
     var currentPlayTime = Dynamic(String())  //현재 실행중인 노래의 시간
+    var lyrics_List : [LyricsModel]? //가사 시간과 가사가 들어가 있는 리스트
+    
+    var show_lyricIndex = Dynamic(Int())
+    var isLastLyric = Dynamic(false)
+    var isFirstLyric = Dynamic(false)
+    
     var progressTimer : Timer! // 타이머를 위한 변수
     
     var player:AVPlayer? {
@@ -42,8 +48,9 @@ class MusicPlayerViewModel {
             let data = stringData.data(using: String.Encoding.utf8)
             musicINFO = try JSONDecoder().decode(MusicModel.self, from: data!)
             //print(musicINFO?.file )
+            show_lyricIndex.value = 0
             getAlbumImage()
-            
+            transLyrics(musicINFO!.lyrics!)
             //음악 플레이어 설정
             let playerItem:AVPlayerItem = AVPlayerItem(url: musicINFO!.file!)
             player = AVPlayer(playerItem: playerItem)
@@ -65,6 +72,14 @@ class MusicPlayerViewModel {
         
     }
     
+    func transLyrics(_ lyrics : String){   //가사를 원하는 형식으로 바꿔줌
+        lyrics_List = lyrics.replacingOccurrences(of: "[", with: "").components(separatedBy: "\n").map { (sub) -> LyricsModel in
+            let str2 = sub.components(separatedBy: "]")
+            let time = str2[0].components(separatedBy: ":")
+            return LyricsModel(Float(Int(time[0])! * 60 + Int(time[1])!) + Float(Double(time[2])! * 0.001)
+                , str2[1])
+        }
+    }
     
     func timeString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
         let hour = Int(time) / 3600
@@ -106,13 +121,41 @@ class MusicPlayerViewModel {
     
     
     
-    @objc func setCurrentPlayTime() {
+    @objc func setCurrentPlayTime() {   //현재 재생시간과 가사 뷰에 보여지는 가사를 설정하는 함수
         currentPlayTime.value = timeString(time: TimeInterval((player?.currentItem?.currentTime().seconds)!))
+        playPoint.value = Float((player?.currentItem?.currentTime().seconds)!)
+    
+        if(playPoint.value < (lyrics_List!.first?.time!)!){  //노래가 시작하고 처음 가사 시작점보다 현재 재생위치가 작을때
+            isFirstLyric.value = false  //가사 보여주는 테이블에 첫번째 cell에 색을 빼주기 위함
+            return
+        }
+        else{
+            isFirstLyric.value = true   //노래 재생 시간이 처음가사 시간을 넘기면
+        }
         
-        // let a = Double((player?.currentItem?.currentTime().seconds)!.rounded())
-        // let b = Double((player?.currentItem?.duration.seconds)!.rounded())
-        // print(a/b)
-        playPoint.value = Float((player?.currentItem?.currentTime().seconds)!) //Float(Double((player?.currentItem?.currentTime().seconds)!)/Double((player?.currentItem?.duration.seconds)!))
+        while true {
+            if(show_lyricIndex.value == lyrics_List!.count - 1){  //노래의 마지막 가사를 가르킬때
+                isLastLyric.value = true   //가사 보여주는 테이블뷰에 두번째 cell에 색을 넣기 위함
+                show_lyricIndex.value -= 1
+                break
+            }
+            
+            
+            if( playPoint.value <= lyrics_List![show_lyricIndex.value+1].time! && playPoint.value > lyrics_List![show_lyricIndex.value].time!){   //노래가 현재 가사 시간에 있을때
+                isLastLyric.value = false   //가사 보여주는 테이블뷰에 두번째 cell에 색을 제거
+                break
+            }
+            if(playPoint.value > lyrics_List![show_lyricIndex.value+1].time!){
+                //검색할때, 현재 재생시간이 가사 시간보다 빠르면 다음 가사로 넘어가서 비교
+                show_lyricIndex.value += 1
+                continue
+            }
+            if(playPoint.value < lyrics_List![show_lyricIndex.value].time!){
+                //검색할때, 현재 재생시간이 가사 시간보다 느리면 가사 주소를 하나 감소 시킨다.
+                show_lyricIndex.value -= 1
+                continue
+            }
+        }
     }
     
 }

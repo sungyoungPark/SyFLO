@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class MusicModel : NSObject , Decodable{
     
     var singer : String?  //아티스트명
@@ -27,7 +28,6 @@ class MusicModel : NSObject , Decodable{
         self.image = image
         self.file = file
         self.lyrics = lyrics
-    }
-    
+    }    
     
 }
