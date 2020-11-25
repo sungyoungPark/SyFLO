@@ -98,7 +98,11 @@ class MusicPlayerViewModel {
         //print(player?.currentItem?.currentTime().seconds) //노래 진행 시간
         if(player?.rate == 0){
             player?.play()
-            progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)
+            
+            if(progressTimer == nil){
+                print("progreesTimer nil")
+                progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)
+            }
         }
         else{
             player?.pause()
@@ -124,7 +128,7 @@ class MusicPlayerViewModel {
     @objc func setCurrentPlayTime() {   //현재 재생시간과 가사 뷰에 보여지는 가사를 설정하는 함수
         currentPlayTime.value = timeString(time: TimeInterval((player?.currentItem?.currentTime().seconds)!))
         playPoint.value = Float((player?.currentItem?.currentTime().seconds)!)
-    
+        
         if(playPoint.value < (lyrics_List!.first?.time!)!){  //노래가 시작하고 처음 가사 시작점보다 현재 재생위치가 작을때
             isFirstLyric.value = false  //가사 보여주는 테이블에 첫번째 cell에 색을 빼주기 위함
             return
