@@ -130,23 +130,38 @@ class MusicPlayerViewModel {
         playPoint.value = Float((player?.currentItem?.currentTime().seconds)!)
         
         if(playPoint.value < (lyrics_List!.first?.time!)!){  //노래가 시작하고 처음 가사 시작점보다 현재 재생위치가 작을때
-            isFirstLyric.value = false  //가사 보여주는 테이블에 첫번째 cell에 색을 빼주기 위함
+            //가사 보여주는 테이블에 첫번째 cell에 색을 빼주기 위함
+            if(isFirstLyric.value == true){
+                isFirstLyric.value = false
+            }
+            if(isLastLyric.value == true){
+                isLastLyric.value = false
+            }
+            if(show_lyricIndex.value != 0 ){
+                show_lyricIndex.value = 0
+            }
             return
         }
         else{
-            isFirstLyric.value = true   //노래 재생 시간이 처음가사 시간을 넘기면
+            if(isFirstLyric.value == false){
+                isFirstLyric.value = true   //노래 재생 시간이 처음가사 시간을 넘기면
+            }
         }
         
         while true {
             if(show_lyricIndex.value == lyrics_List!.count - 1){  //노래의 마지막 가사를 가르킬때
-                isLastLyric.value = true   //가사 보여주는 테이블뷰에 두번째 cell에 색을 넣기 위함
+                if(isLastLyric.value == false){
+                    isLastLyric.value = true   //가사 보여주는 테이블뷰에 두번째 cell에 색을 넣기 위함
+                }
                 show_lyricIndex.value -= 1
                 break
             }
             
             
             if( playPoint.value <= lyrics_List![show_lyricIndex.value+1].time! && playPoint.value > lyrics_List![show_lyricIndex.value].time!){   //노래가 현재 가사 시간에 있을때
-                isLastLyric.value = false   //가사 보여주는 테이블뷰에 두번째 cell에 색을 제거
+                if(isLastLyric.value == true){
+                     isLastLyric.value = false   //가사 보여주는 테이블뷰에 두번째 cell에 색을 제거
+                }
                 break
             }
             if(playPoint.value > lyrics_List![show_lyricIndex.value+1].time!){
