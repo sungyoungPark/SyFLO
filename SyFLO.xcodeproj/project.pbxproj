@@ -147,8 +147,8 @@
 			children = (
 				5B5D7F592565A035003E1BE4 /* MusicModel.swift */,
 				5BBF3CA4256D92C100B41776 /* LyricsModel.swift */,
-				5B8ABFF225868A3400D7CC3C /* DetailLyricsModel.swift */,
 				5B8ABFF425868F3C00D7CC3C /* MusicPlayerModel.swift */,
+				5B8ABFF225868A3400D7CC3C /* DetailLyricsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

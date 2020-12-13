@@ -31,8 +31,6 @@ class MusicPlayerViewModel {
             let stringData = try String(contentsOf: url, encoding: .utf8)
             let data = stringData.data(using: String.Encoding.utf8)
             musicINFO = try JSONDecoder().decode(MusicModel.self, from: data!)
-            //print(musicINFO?.file )
-            //show_lyricIndex.value = 0
             
             getAlbumImage()
             
