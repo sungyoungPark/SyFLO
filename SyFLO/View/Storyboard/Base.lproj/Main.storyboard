@@ -94,7 +94,7 @@
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="lyrics" destination="gwR-PC-QA5" id="Dub-x2-Np5"/>
-                                                            <segue destination="1HH-yl-K4g" kind="show" id="Yy7-Cl-qjz"/>
+                                                            <segue destination="1HH-yl-K4g" kind="show" identifier="showDetailLyrics" id="Yy7-Cl-qjz"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -225,10 +225,10 @@
             </objects>
             <point key="canvasLocation" x="1278" y="-706"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail Lyrics View Controller-->
         <scene sceneID="ggk-5E-2TW">
             <objects>
-                <viewController storyboardIdentifier="LyricsVC" id="1HH-yl-K4g" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LyricsVC" id="1HH-yl-K4g" customClass="DetailLyricsViewController" customModule="FLO_SY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7Y-Az-D3F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

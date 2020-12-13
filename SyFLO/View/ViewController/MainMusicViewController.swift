@@ -28,7 +28,6 @@ class MainMusicViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //상태바 검은 화면으로
         let statusBar1 =  UIView()
         statusBar1.frame = UIApplication.shared.statusBarFrame
@@ -60,30 +59,30 @@ class MainMusicViewController: UIViewController {
             viewModel.albumImage.bind { (albumImage) in
                 self.album_Image.image = albumImage
             }
-            viewModel.playPoint.bind { (playPoint) in
+            viewModel.musicPlayer?.playPoint.bind { (playPoint) in
                 self.progressBar.value = playPoint
             }
-            viewModel.currentPlayTime.bind { (currentPlayTime) in
+            viewModel.musicPlayer?.currentPlayTime.bind { (currentPlayTime) in
                 self.currentTime.text = currentPlayTime
             }
-            viewModel.show_lyricIndex.bind { (index) in
+            viewModel.musicPlayer?.show_lyricIndex.bind { (index) in
                 DispatchQueue.main.async {
                     self.lyricsTV.reloadData()
                 }
             }
-            viewModel.isFirstLyric.bind { (Bool) in
+            viewModel.musicPlayer?.isFirstLyric.bind { (Bool) in
                 DispatchQueue.main.async {
                     self.lyricsTV.reloadData()
                 }
             }
-            viewModel.isLastLyric.bind { (Bool) in
+            viewModel.musicPlayer?.isLastLyric.bind { (Bool) in
                 DispatchQueue.main.async {
                     self.lyricsTV.reloadData()
                 }
             }
             self.music_Title.text = viewModel.musicINFO?.title
             self.singer.text = viewModel.musicINFO?.singer
-            self.finishTime.text = viewModel.timeString(time: TimeInterval(viewModel.musicINFO!.duration!))
+            self.finishTime.text = viewModel.musicPlayer?.timeString(time: TimeInterval(viewModel.musicINFO!.duration!))
         }
     }
     
@@ -102,15 +101,18 @@ class MainMusicViewController: UIViewController {
     
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetailLyrics" {
+            let DetailLyricsViewController = segue.destination as! DetailLyricsViewController
+           // DetailLyricsViewController.viewModel
+        }
+
      }
-     */
+     
     
 }
 
@@ -123,10 +125,10 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
         
         if(indexPath.row == 0){
-            cell.lyrics.text = viewModel?.lyrics_List![viewModel!.show_lyricIndex.value].lyric
+            cell.lyrics.text = viewModel?.musicPlayer?.lyrics_List![(viewModel!.musicPlayer!.show_lyricIndex.value)].lyric
             cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
-            if(viewModel?.isFirstLyric.value == true){
-                if(viewModel?.isLastLyric.value == true){
+            if(viewModel?.musicPlayer?.isFirstLyric.value == true){
+                if(viewModel?.musicPlayer?.isLastLyric.value == true){
                     cell.lyrics.textColor = .black
                 }
                 else{
@@ -139,9 +141,9 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
         }
         
         if(indexPath.row == 1){
-            cell.lyrics.text = viewModel?.lyrics_List![viewModel!.show_lyricIndex.value+1].lyric
+            cell.lyrics.text = viewModel?.musicPlayer?.lyrics_List![(viewModel!.musicPlayer!.show_lyricIndex.value)+1].lyric
             cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
-            if(viewModel?.isLastLyric.value == true){
+            if(viewModel?.musicPlayer?.isLastLyric.value == true){
                  cell.lyrics.textColor = .blue
             }
             else{
