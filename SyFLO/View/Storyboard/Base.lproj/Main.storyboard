@@ -246,13 +246,28 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="584"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="v9e-71-n7z">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lyricsCell1" id="qeh-j7-Fv4" customClass="LyricsTableViewCell" customModule="FLO_SY" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v9e-71-n7z" id="oJo-aQ-i6I">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qeh-j7-Fv4" id="hqH-KK-Z1E">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zui-wV-F9g">
+                                                            <rect key="frame" x="186.33333333333334" y="11.666666666666666" width="41.666666666666657" height="20.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Zui-wV-F9g" firstAttribute="centerY" secondItem="hqH-KK-Z1E" secondAttribute="centerY" id="0kI-PM-QL1"/>
+                                                        <constraint firstItem="Zui-wV-F9g" firstAttribute="centerX" secondItem="hqH-KK-Z1E" secondAttribute="centerX" id="xO4-Nn-ZG9"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="lyrics" destination="Zui-wV-F9g" id="MWO-D6-q6b"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -299,6 +314,10 @@
                         <viewLayoutGuide key="safeArea" id="Ebk-mQ-5XS"/>
                     </view>
                     <navigationItem key="navigationItem" id="xwT-cF-j1h"/>
+                    <connections>
+                        <outlet property="lyricsTV" destination="7Qx-rI-47B" id="DPx-P3-0Da"/>
+                        <outlet property="progressBar" destination="kRw-kW-vg3" id="gkv-qQ-jbI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyK-wI-dQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,9 +11,19 @@ import AVFoundation
 
 class  DetailLyricsViewModel{
     
+    var detailLyricsModel = DetailLyricsModel()
+    
     init() {
+        
         print("DetailLyricsViewModel 생성")
+  
     }
+    
+    func controlPlayer(){
+        
+        detailLyricsModel.controlMusic()
+    }
+    
     
     
 }

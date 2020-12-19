@@ -9,26 +9,67 @@
 import UIKit
 
 class DetailLyricsViewController: UIViewController {
-
+    
     var viewModel = DetailLyricsViewModel()
+    
+    @IBOutlet var lyricsTV: UITableView!
+    @IBOutlet var progressBar: UISlider!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         print("생성")
-
-        // Do any additional setup after loading the view.
+        //print(viewModel.detailLyricsModel.playPoint.value)
+        bindViewModel()
+        
+        lyricsTV.delegate = self
+        lyricsTV.dataSource = self
+        
+        self.progressBar.maximumValue = viewModel.detailLyricsModel.endTimePoint
+        self.progressBar.minimumValue = 0
+        self.progressBar.value = viewModel.detailLyricsModel.playPoint.value
+        self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+  
+    
+    
+    func bindViewModel(){
+        viewModel.detailLyricsModel.playPoint.bind{ (playPoint) in
+            print("디테일 프로그래스바", playPoint)
+            self.progressBar.value = playPoint
+        }
     }
-    */
+    
+    
+    
+    @IBAction func controlPlayer(_ sender: Any) {
+        
+        viewModel.controlPlayer()
+        
+    }
+    
+    @IBAction func slideProgressBar(_ sender: UISlider) {
+        if sender.isTracking{
+            return
+        }
+    }
+    
+    
+    
+}
 
+extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.detailLyricsModel.lyrics_List!.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
+        cell.lyrics.text = viewModel.detailLyricsModel.lyrics_List![indexPath.row].lyric
+        return cell
+    }
+    
+    
 }

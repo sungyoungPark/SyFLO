@@ -19,7 +19,7 @@ class MusicPlayerViewModel {
     var musicPlayer : MusicPlayerModel?
     
     var albumImage = Dynamic(UIImage())
-  
+    
     
     init() {
         guard  let url = URL(string: path) else {
@@ -59,7 +59,7 @@ class MusicPlayerViewModel {
         }
         
     }
-        
+    
     
     func musicPlay(){
         musicPlayer?.playMusic()
@@ -69,6 +69,7 @@ class MusicPlayerViewModel {
         musicPlayer?.invalidatePlayer()//seekBar를 움직일때 재생바 움직임을 제어하기 위해
         musicPlayer?.currentPlayTime.value = timetoString(time: TimeInterval(sender.value))
         musicPlayer?.playPoint.value = sender.value
+       
     }
     
     func moveToSeekTime(_ sender: UISlider){

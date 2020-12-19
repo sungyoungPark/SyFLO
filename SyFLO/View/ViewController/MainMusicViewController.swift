@@ -52,6 +52,9 @@ class MainMusicViewController: UIViewController {
         self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        bindViewModel()
+    }
     
     
     func bindViewModel(){
@@ -60,6 +63,7 @@ class MainMusicViewController: UIViewController {
                 self.album_Image.image = albumImage
             }
             viewModel.musicPlayer?.playPoint.bind { (playPoint) in
+                print("기본 프로그래스바", playPoint)
                 self.progressBar.value = playPoint
             }
             viewModel.musicPlayer?.currentPlayTime.bind { (currentPlayTime) in
@@ -100,19 +104,21 @@ class MainMusicViewController: UIViewController {
     }
     
     
-    
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailLyrics" {
             let DetailLyricsViewController = segue.destination as! DetailLyricsViewController
-           // DetailLyricsViewController.viewModel
+            DetailLyricsViewController.viewModel.detailLyricsModel.player = viewModel?.musicPlayer?.player
+            DetailLyricsViewController.viewModel.detailLyricsModel.lyrics_List = viewModel?.musicPlayer?.lyrics_List
+            
+            DetailLyricsViewController.viewModel.detailLyricsModel.playPoint = (viewModel?.musicPlayer!.playPoint)!
+            
+            DetailLyricsViewController.viewModel.detailLyricsModel.endTimePoint = Float((viewModel?.musicINFO!.duration)!)
+            
+            DetailLyricsViewController.viewModel.detailLyricsModel.progressTimer = viewModel?.musicPlayer?.progressTimer
         }
-
-     }
-     
+        
+    }
+    
     
 }
 
@@ -144,7 +150,7 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
             cell.lyrics.text = viewModel?.musicPlayer?.lyrics_List![(viewModel!.musicPlayer!.show_lyricIndex.value)+1].lyric
             cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
             if(viewModel?.musicPlayer?.isLastLyric.value == true){
-                 cell.lyrics.textColor = .blue
+                cell.lyrics.textColor = .blue
             }
             else{
                 cell.lyrics.textColor = .black

@@ -64,7 +64,9 @@ class MusicPlayerModel {
     }
     
     func invalidatePlayer(){
-        progressTimer.invalidate() //seekBar를 움직일때 재생바 움직임을 제어하기 위해
+        if(progressTimer != nil){
+            progressTimer.invalidate() //seekBar를 움직일때 재생바 움직임을 제어하기 위해
+        }
     }
     
     func moveToSeekTime(_ sender: UISlider){
