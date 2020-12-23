@@ -45,6 +45,16 @@ class DetailLyricsViewController: UIViewController {
                 self.lyricsTV.reloadData()
             }
         }
+        viewModel.musicPlayer.isFirstLyric.bind { (Bool) in
+            DispatchQueue.main.async {
+                self.lyricsTV.reloadData()
+            }
+        }
+        viewModel.musicPlayer.isLastLyric.bind { (Bool) in
+            DispatchQueue.main.async {
+                self.lyricsTV.reloadData()
+            }
+        }
     }
     
     
@@ -73,13 +83,34 @@ extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
+        
+        cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
+        
         cell.lyrics.text = viewModel.musicPlayer.lyrics_List![indexPath.row].lyric
-        if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value){  //현재 재생 중인 가사 위치
-            cell.lyrics.textColor = .blue
+        
+        if(viewModel.musicPlayer.isFirstLyric.value == true){
+            if(viewModel.musicPlayer.isLastLyric.value == false){
+                if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value){  //현재 재생 중인 가사 위치
+                        cell.lyrics.textColor = .blue
+                    }
+                    else{
+                        cell.lyrics.textColor = .black
+                    }
+            }
+            else{
+               if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value + 1){  //현재 재생 중인 가사 위치
+                       cell.lyrics.textColor = .blue
+                   }
+                   else{
+                       cell.lyrics.textColor = .black
+                   }
+
+            }
         }
         else{
             cell.lyrics.textColor = .black
         }
+        
         return cell
     }
     
