@@ -21,9 +21,11 @@
   + Play/Stop 버튼
   
 ## ■ 시스템구성도
+<div>
 <img src="image/floApp_lauchScreen.PNG" width="300" height="550">
 <img src="image/floApp_mainMusicScreen.PNG" width="300" height="550">
 <img src="image/floApp_lyricsScreen.PNG" width="300" height="550">
+</div>
 
 ## 기능 요구 사항
 
