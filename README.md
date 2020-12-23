@@ -20,7 +20,7 @@
   + Seekbar
   + Play/Stop 버튼
   
-## ■ 시스템구성도
+## ■ 기존 flo 앱 이미지
 <div>
 <img src="image/floApp_lauchScreen.PNG" width="300" height="550">
 <img src="image/floApp_mainMusicScreen.PNG" width="300" height="550">
