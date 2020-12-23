@@ -20,6 +20,9 @@
   + Seekbar
   + Play/Stop 버튼
   
+## ■ 시스템구성도
+![floApp lauchScreen](image/floApp lauchScreen.PNG)
+  
 ## 기능 요구 사항
 
 - 스플래시 스크린
