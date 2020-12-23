@@ -39,6 +39,7 @@ class MusicPlayerViewModel {
             musicPlayer?.show_lyricIndex.value = 0
             musicPlayer?.setLyricsList(musicINFO!.lyrics!)
             musicPlayer?.playerItem = AVPlayerItem(url: musicINFO!.file!)
+            musicPlayer?.endTimePoint = Float((musicINFO!.duration)!)
             //let playerItem:AVPlayerItem = AVPlayerItem(url: musicINFO!.file!)
             musicPlayer?.setPlayer()
             
@@ -65,17 +66,17 @@ class MusicPlayerViewModel {
         musicPlayer?.playMusic()
     }
     
-    func seekMusic(_ sender: UISlider){
+    func seekMusic(_ sender: Float){
         musicPlayer?.invalidatePlayer()//seekBar를 움직일때 재생바 움직임을 제어하기 위해
-        musicPlayer?.currentPlayTime.value = timetoString(time: TimeInterval(sender.value))
-        musicPlayer?.playPoint.value = sender.value
+        musicPlayer?.currentPlayTime.value = timetoString(time: TimeInterval(sender))
+        musicPlayer?.playPoint.value = sender
        
     }
     
-    func moveToSeekTime(_ sender: UISlider){
+    func moveToSeekTime(_ sender: Float){
         
         //CMTimeMake(value: Int64(sender.value), timescale: 1) CMTime 형식으로 변환
-        musicPlayer?.playPoint.value = Float(Int(sender.value))  //seekBar를 정확한 위치에 넣기위해 소수점을 제거하고 재생점 위치 시킴
+        musicPlayer?.playPoint.value = Float(Int(sender))  //seekBar를 정확한 위치에 넣기위해 소수점을 제거하고 재생점 위치 시킴
         
         musicPlayer?.moveToSeekTime(sender)
     }

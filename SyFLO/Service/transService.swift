@@ -9,7 +9,7 @@
 import Foundation
 
 extension MusicPlayerModel {
-   func timeString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
+    func timeString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
         let hour = Int(time) / 3600
         let minute = Int(time) / 60 % 60
         let second = Int(time) % 60
@@ -22,7 +22,7 @@ extension MusicPlayerModel {
 }
 
 extension MusicPlayerViewModel {
-   func timetoString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
+    func timetoString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
         let hour = Int(time) / 3600
         let minute = Int(time) / 60 % 60
         let second = Int(time) % 60
@@ -33,6 +33,17 @@ extension MusicPlayerViewModel {
         return String(format: "%02i:%02i:%02i", hour, minute, second)
     }
     
-    
-    
+}
+
+extension DetailLyricsViewModel{
+   func timetoString(time: TimeInterval) -> String {  // 분:초 로 바꿔주는 함수
+           let hour = Int(time) / 3600
+           let minute = Int(time) / 60 % 60
+           let second = Int(time) % 60
+           if( hour == 0 ){
+               return String(format: "%02i:%02i", minute, second)
+           }
+           // return formated string
+           return String(format: "%02i:%02i:%02i", hour, minute, second)
+       }
 }

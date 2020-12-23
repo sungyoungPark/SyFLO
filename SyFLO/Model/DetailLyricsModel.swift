@@ -12,6 +12,8 @@ import AVFoundation
 struct DetailLyricsModel{
     
     var progressTimer : Timer! // 타이머를 위한 변수
+    //let timePlayerSelector:Selector = #selector(setCurrentPlayTime)
+    var currentPlayTime = Dynamic(String())  //현재 실행중인 노래의 시간
     
     var player:AVPlayer? {
         didSet{
@@ -29,23 +31,7 @@ struct DetailLyricsModel{
     var show_lyricIndex = Dynamic(Int())
     var isLastLyric = Dynamic(false)
     var isFirstLyric = Dynamic(false)
-    
-    func controlMusic(){
-        //player.rate = 재생속도를 의미함
-        //print(player?.currentItem?.duration.seconds)  //노래 전체 시간 (duration)
-        //print(player?.currentItem?.currentTime().seconds) //노래 진행 시간
-        if(player?.rate == 0){
-            player?.play()
-        }
-        else{
-            player?.pause()
-        }
-    }
-    
-    
- 
-    
-    
+
     
 }
 

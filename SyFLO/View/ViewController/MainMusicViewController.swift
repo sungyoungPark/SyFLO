@@ -47,7 +47,7 @@ class MainMusicViewController: UIViewController {
         lyricsTV.delegate = self
         lyricsTV.dataSource = self
         
-        self.progressBar.maximumValue = Float((viewModel?.musicINFO!.duration)!)
+        self.progressBar.maximumValue = (viewModel?.musicPlayer!.endTimePoint)!
         self.progressBar.minimumValue = 0
         self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
@@ -63,7 +63,7 @@ class MainMusicViewController: UIViewController {
                 self.album_Image.image = albumImage
             }
             viewModel.musicPlayer?.playPoint.bind { (playPoint) in
-                print("기본 프로그래스바", playPoint)
+                //print("기본 프로그래스바", playPoint)
                 self.progressBar.value = playPoint
             }
             viewModel.musicPlayer?.currentPlayTime.bind { (currentPlayTime) in
@@ -96,17 +96,22 @@ class MainMusicViewController: UIViewController {
     }
     
     @IBAction func slideProgressBar(_ sender: UISlider) {
-        viewModel?.seekMusic(sender)
+        viewModel?.seekMusic(sender.value)
         if sender.isTracking{
             return
         }
-        viewModel?.moveToSeekTime(sender)
+        viewModel?.moveToSeekTime(sender.value)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailLyrics" {
             let DetailLyricsViewController = segue.destination as! DetailLyricsViewController
+            DetailLyricsViewController.viewModel.musicPlayer = viewModel!.musicPlayer!
+            
+            
+            //DetailLyricsViewController.viewModel.detailLyricsModel.lyrics_List = viewModel?.musicPlayer?.lyrics_List
+            /*
             DetailLyricsViewController.viewModel.detailLyricsModel.player = viewModel?.musicPlayer?.player
             DetailLyricsViewController.viewModel.detailLyricsModel.lyrics_List = viewModel?.musicPlayer?.lyrics_List
             
@@ -115,6 +120,7 @@ class MainMusicViewController: UIViewController {
             DetailLyricsViewController.viewModel.detailLyricsModel.endTimePoint = Float((viewModel?.musicINFO!.duration)!)
             
             DetailLyricsViewController.viewModel.detailLyricsModel.progressTimer = viewModel?.musicPlayer?.progressTimer
+ */
         }
         
     }

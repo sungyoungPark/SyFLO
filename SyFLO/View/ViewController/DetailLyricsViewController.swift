@@ -26,34 +26,40 @@ class DetailLyricsViewController: UIViewController {
         lyricsTV.delegate = self
         lyricsTV.dataSource = self
         
-        self.progressBar.maximumValue = viewModel.detailLyricsModel.endTimePoint
+        self.progressBar.maximumValue = viewModel.musicPlayer.endTimePoint
         self.progressBar.minimumValue = 0
-        self.progressBar.value = viewModel.detailLyricsModel.playPoint.value
+        self.progressBar.value = viewModel.musicPlayer.playPoint.value
         self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
     
-  
+    
     
     
     func bindViewModel(){
-        viewModel.detailLyricsModel.playPoint.bind{ (playPoint) in
-            print("디테일 프로그래스바", playPoint)
+        viewModel.musicPlayer.playPoint.bind{ (playPoint) in
+            //print("디테일 프로그래스바", playPoint)
             self.progressBar.value = playPoint
+        }
+        viewModel.musicPlayer.show_lyricIndex.bind { (index) in
+            DispatchQueue.main.async {
+                self.lyricsTV.reloadData()
+            }
         }
     }
     
     
     
-    @IBAction func controlPlayer(_ sender: Any) {
-        
-        viewModel.controlPlayer()
-        
+    @IBAction func pausePlayer(_ sender: Any) {  //음악 정지,시작 버튼
+        viewModel.musicPlay()
     }
     
-    @IBAction func slideProgressBar(_ sender: UISlider) {
+    @IBAction func slideProgressBar(_ sender: UISlider) {  //음악 재생 위치 조절
+        viewModel.seekMusic(sender.value)
         if sender.isTracking{
             return
         }
+        viewModel.moveToSeekTime(sender.value)
+        
     }
     
     
@@ -62,12 +68,18 @@ class DetailLyricsViewController: UIViewController {
 
 extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.detailLyricsModel.lyrics_List!.count
+        return viewModel.musicPlayer.lyrics_List!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
-        cell.lyrics.text = viewModel.detailLyricsModel.lyrics_List![indexPath.row].lyric
+        cell.lyrics.text = viewModel.musicPlayer.lyrics_List![indexPath.row].lyric
+        if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value){  //현재 재생 중인 가사 위치
+            cell.lyrics.textColor = .blue
+        }
+        else{
+            cell.lyrics.textColor = .black
+        }
         return cell
     }
     

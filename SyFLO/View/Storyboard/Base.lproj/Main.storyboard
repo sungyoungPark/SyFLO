@@ -276,6 +276,9 @@
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kRw-kW-vg3">
                                                 <rect key="frame" x="-2" y="12.333333333333371" width="418" height="31"/>
+                                                <connections>
+                                                    <action selector="slideProgressBar:" destination="1HH-yl-K4g" eventType="valueChanged" id="rbN-rV-Bl4"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -291,6 +294,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNg-hf-n4K">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="91.333333333333329"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="pausePlayer:" destination="1HH-yl-K4g" eventType="touchUpInside" id="QOd-0b-Mmh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

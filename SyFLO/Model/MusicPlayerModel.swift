@@ -14,6 +14,7 @@ class MusicPlayerModel {
     let timePlayerSelector:Selector = #selector(setCurrentPlayTime)
     
     var currentPlayTime = Dynamic(String())  //현재 실행중인 노래의 시간
+    var endTimePoint = Float()  //노래의 길이, 끝나는 시간
     var playPoint = Dynamic(Float())  //seekBar에서 현재 진행중인 위치
     var lyrics_List : [LyricsModel]? //가사 시간과 가사가 들어가 있는 리스트
     
@@ -51,8 +52,12 @@ class MusicPlayerModel {
         //print(player?.currentItem?.duration.seconds)  //노래 전체 시간 (duration)
         //print(player?.currentItem?.currentTime().seconds) //노래 진행 시간
         if(player?.rate == 0){
-            player?.play()
             
+            if(playPoint.value >= endTimePoint){ //음악이 끝나면 다시 처음부터 재생
+                player?.seek(to: .zero) // 음악 재생위치를 처음으로 되돌림
+            }
+            
+            player?.play()
             if(progressTimer == nil){
                 //print("progreesTimer nil")
                 progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)
@@ -69,11 +74,11 @@ class MusicPlayerModel {
         }
     }
     
-    func moveToSeekTime(_ sender: UISlider){
+    func moveToSeekTime(_ sender: Float){
         
         //CMTimeMake(value: Int64(sender.value), timescale: 1) CMTime 형식으로 변환
         
-        player?.seek(to: CMTimeMake(value: Int64(sender.value), timescale: 1)) // seekBar 위치로 노래 이동
+        player?.seek(to: CMTimeMake(value: Int64(sender), timescale: 1)) // seekBar 위치로 노래 이동
         progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timePlayerSelector, userInfo: nil, repeats: true)  //seekMusic에서 invalidate한 것을 다시 시작
         
     }
