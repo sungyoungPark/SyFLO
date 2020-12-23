@@ -21,7 +21,7 @@
   + Play/Stop 버튼
   
 ## ■ 시스템구성도
-![floApp lauchScreen](image/floApp lauchScreen.PNG)
+![floApp_lauchScreen](image/floApp_lauchScreen.PNG)
   
 ## 기능 요구 사항
 
