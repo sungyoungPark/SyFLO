@@ -21,8 +21,10 @@
   + Play/Stop 버튼
   
 ## ■ 시스템구성도
-<img src="image/floApp_lauchScreen.PNG" width="300" height="500">
-  
+<img src="image/floApp_lauchScreen.PNG" width="300" height="550">
+<img src="image/floApp_mainMusicScreen.PNG" width="300" height="550">
+<img src="image/floApp_lyricsScreen.PNG" width="300" height="550">
+
 ## 기능 요구 사항
 
 - 스플래시 스크린
