@@ -22,11 +22,11 @@
   
 ## ■ 기존 flo 앱 이미지
 <div>
-<img src="image/floApp_lauchScreen.PNG" width="300" height="550">
-<img src="image/floApp_mainMusicScreen.PNG" width="300" height="550">
-<img src="image/floApp_lyricsScreen.PNG" width="300" height="550">
+<img src="image/floApp_lauchScreen.PNG" width="250" height="450">
+<img src="image/floApp_mainMusicScreen.PNG" width="250" height="450">
+<img src="image/floApp_lyricsScreen.PNG" width="250" height="450">
 </div>
-
+  
 ## 기능 요구 사항
 
 - 스플래시 스크린
