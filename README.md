@@ -22,10 +22,9 @@
   
 ## ■ 기존 flo 앱 이미지
 <div>
-<img src="image/floApp_lauchScreen.PNG" width="200" height="450">
-<img src="image/floApp_mainMusicScreen.PNG" width="200" height="450">
-<img src="image/floApp_lyricsScreen.PNG" width="200" height="450">
-</div>
+<img src="image/floApp_lauchScreen.PNG" style="height: 100%; width: 100%; object-fit: contain" />
+<img src="image/floApp_mainMusicScreen.PNG" style="height: 100%; width: 100%; object-fit: contain" />
+<img src="image/floApp_lyricsScreen.PNG" style="height: 100%; width: 100%; object-fit: contain" />
 
 ## 기능 요구 사항
 
