@@ -16,13 +16,16 @@ class  DetailLyricsViewModel{
     
     init() {
         
-        print("DetailLyricsViewModel 생성")
-        print(musicPlayer.playPoint.value)
     }
     
     func musicPlay(){
         musicPlayer.playMusic()
-        print(musicPlayer.show_lyricIndex.value)
+        if(musicPlayer.isPlaying.value){
+            musicPlayer.isPlaying.value = false
+        }
+        else{
+            musicPlayer.isPlaying.value = true
+        }
     }
     
 

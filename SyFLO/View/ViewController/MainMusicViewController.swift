@@ -54,7 +54,17 @@ class MainMusicViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         bindViewModel()
+        setBtn()
     }
+    
+    func setBtn(){
+        if(viewModel!.musicPlayer!.isPlaying.value){
+             self.playBtn.setTitle("⏹", for: .normal)
+         }
+         else{
+             self.playBtn.setTitle("▶️", for: .normal)
+         }
+     }
     
     
     func bindViewModel(){
@@ -84,14 +94,21 @@ class MainMusicViewController: UIViewController {
                     self.lyricsTV.reloadData()
                 }
             }
+            viewModel.musicPlayer?.isPlaying.bind { (isPlaying) in
+                if(isPlaying){
+                    self.playBtn.setTitle("⏹", for: .normal)
+                }
+                else{
+                    self.playBtn.setTitle("▶️", for: .normal)
+                }
+            }
             self.music_Title.text = viewModel.musicINFO?.title
             self.singer.text = viewModel.musicINFO?.singer
             self.finishTime.text = viewModel.musicPlayer?.timeString(time: TimeInterval(viewModel.musicINFO!.duration!))
         }
     }
     
-    @IBAction func playBtnTapped(_ sender: Any) {
-        print("btn 클릭")
+    @IBAction func playBtnTapped(_ sender: Any) {  //음악 재생, 정지 버튼
         viewModel?.musicPlay()
     }
     
@@ -109,18 +126,6 @@ class MainMusicViewController: UIViewController {
             let DetailLyricsViewController = segue.destination as! DetailLyricsViewController
             DetailLyricsViewController.viewModel.musicPlayer = viewModel!.musicPlayer!
             
-            
-            //DetailLyricsViewController.viewModel.detailLyricsModel.lyrics_List = viewModel?.musicPlayer?.lyrics_List
-            /*
-            DetailLyricsViewController.viewModel.detailLyricsModel.player = viewModel?.musicPlayer?.player
-            DetailLyricsViewController.viewModel.detailLyricsModel.lyrics_List = viewModel?.musicPlayer?.lyrics_List
-            
-            DetailLyricsViewController.viewModel.detailLyricsModel.playPoint = (viewModel?.musicPlayer!.playPoint)!
-            
-            DetailLyricsViewController.viewModel.detailLyricsModel.endTimePoint = Float((viewModel?.musicINFO!.duration)!)
-            
-            DetailLyricsViewController.viewModel.detailLyricsModel.progressTimer = viewModel?.musicPlayer?.progressTimer
- */
         }
         
     }

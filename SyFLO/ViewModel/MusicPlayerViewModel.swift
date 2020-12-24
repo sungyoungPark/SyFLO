@@ -20,7 +20,6 @@ class MusicPlayerViewModel {
     
     var albumImage = Dynamic(UIImage())
     
-    
     init() {
         guard  let url = URL(string: path) else {
             print("url error")
@@ -64,6 +63,12 @@ class MusicPlayerViewModel {
     
     func musicPlay(){
         musicPlayer?.playMusic()
+        if(musicPlayer!.isPlaying.value){
+            musicPlayer!.isPlaying.value = false
+        }
+        else{
+            musicPlayer!.isPlaying.value = true
+        }
     }
     
     func seekMusic(_ sender: Float){

@@ -21,6 +21,7 @@ class MusicPlayerModel {
     var show_lyricIndex = Dynamic(Int())
     var isLastLyric = Dynamic(false)
     var isFirstLyric = Dynamic(false)
+    var isPlaying = Dynamic(false)
     
     
     
@@ -133,6 +134,11 @@ class MusicPlayerModel {
                 continue
             }
         }
+        
+        if(isPlaying.value == true && playPoint.value >= endTimePoint){
+            isPlaying.value = false
+        }
+        
     }
     
     

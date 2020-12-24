@@ -12,6 +12,8 @@ class DetailLyricsViewController: UIViewController {
     
     var viewModel = DetailLyricsViewModel()
     
+    @IBOutlet var playBtn: UIButton!
+    
     @IBOutlet var lyricsTV: UITableView!
     @IBOutlet var progressBar: UISlider!
     
@@ -19,8 +21,8 @@ class DetailLyricsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("생성")
-        //print(viewModel.detailLyricsModel.playPoint.value)
+        setBtn()
+        
         bindViewModel()
         
         lyricsTV.delegate = self
@@ -33,7 +35,14 @@ class DetailLyricsViewController: UIViewController {
     }
     
     
-    
+    func setBtn(){
+        if(viewModel.musicPlayer.isPlaying.value){
+            self.playBtn.setTitle("⏹", for: .normal)
+        }
+        else{
+            self.playBtn.setTitle("▶️", for: .normal)
+        }
+    }
     
     func bindViewModel(){
         viewModel.musicPlayer.playPoint.bind{ (playPoint) in
@@ -55,11 +64,20 @@ class DetailLyricsViewController: UIViewController {
                 self.lyricsTV.reloadData()
             }
         }
+        viewModel.musicPlayer.isPlaying.bind { (isPlaying) in
+            if(isPlaying){
+                self.playBtn.setTitle("⏹", for: .normal)
+            }
+            else{
+                self.playBtn.setTitle("▶️", for: .normal)
+            }
+        }
     }
     
     
     
     @IBAction func pausePlayer(_ sender: Any) {  //음악 정지,시작 버튼
+        
         viewModel.musicPlay()
     }
     
@@ -91,20 +109,20 @@ extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegat
         if(viewModel.musicPlayer.isFirstLyric.value == true){
             if(viewModel.musicPlayer.isLastLyric.value == false){
                 if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value){  //현재 재생 중인 가사 위치
-                        cell.lyrics.textColor = .blue
-                    }
-                    else{
-                        cell.lyrics.textColor = .black
-                    }
+                    cell.lyrics.textColor = .blue
+                }
+                else{
+                    cell.lyrics.textColor = .black
+                }
             }
             else{
-               if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value + 1){  //현재 재생 중인 가사 위치
-                       cell.lyrics.textColor = .blue
-                   }
-                   else{
-                       cell.lyrics.textColor = .black
-                   }
-
+                if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value + 1){  //현재 재생 중인 가사 위치
+                    cell.lyrics.textColor = .blue
+                }
+                else{
+                    cell.lyrics.textColor = .black
+                }
+                
             }
         }
         else{
