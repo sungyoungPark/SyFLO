@@ -14,6 +14,9 @@ class  DetailLyricsViewModel{
     //var detailLyricsModel = DetailLyricsModel()
     var musicPlayer = MusicPlayerModel()
     
+    var singerText : String? = String()
+    var titleText : String? = String()
+    
     init() {
         
     }

@@ -11,7 +11,8 @@ import UIKit
 class MainMusicViewController: UIViewController {
     
     var viewModel : MusicPlayerViewModel?
-    
+
+    @IBOutlet var album_Title: UILabel!
     @IBOutlet var music_Title: UILabel!
     @IBOutlet var singer: UILabel!
     @IBOutlet var album_Image: UIImageView!
@@ -49,7 +50,9 @@ class MainMusicViewController: UIViewController {
         
         self.progressBar.maximumValue = (viewModel?.musicPlayer!.endTimePoint)!
         self.progressBar.minimumValue = 0
-        self.progressBar.setThumbImage(UIImage(), for: .normal)
+       // self.progressBar.setThumbImage(UIImage(), for: .normal)
+        //self.progressBar.thumbTintColor = .clear
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +106,7 @@ class MainMusicViewController: UIViewController {
                 }
             }
             self.music_Title.text = viewModel.musicINFO?.title
+            self.album_Title.text = viewModel.musicINFO?.album
             self.singer.text = viewModel.musicINFO?.singer
             self.finishTime.text = viewModel.musicPlayer?.timeString(time: TimeInterval(viewModel.musicINFO!.duration!))
         }
@@ -125,6 +129,8 @@ class MainMusicViewController: UIViewController {
         if segue.identifier == "showDetailLyrics" {
             let DetailLyricsViewController = segue.destination as! DetailLyricsViewController
             DetailLyricsViewController.viewModel.musicPlayer = viewModel!.musicPlayer!
+            DetailLyricsViewController.viewModel.singerText = viewModel?.musicINFO?.singer
+            DetailLyricsViewController.viewModel.titleText = viewModel?.musicINFO?.title
             
         }
         

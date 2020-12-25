@@ -14,6 +14,9 @@ class DetailLyricsViewController: UIViewController {
     
     @IBOutlet var playBtn: UIButton!
     
+    @IBOutlet var sing_Title: UILabel!
+    @IBOutlet var singer: UILabel!
+    
     @IBOutlet var lyricsTV: UITableView!
     @IBOutlet var progressBar: UISlider!
     
@@ -28,10 +31,12 @@ class DetailLyricsViewController: UIViewController {
         lyricsTV.delegate = self
         lyricsTV.dataSource = self
         
+        self.navigationController?.isNavigationBarHidden = true
+        
         self.progressBar.maximumValue = viewModel.musicPlayer.endTimePoint
         self.progressBar.minimumValue = 0
         self.progressBar.value = viewModel.musicPlayer.playPoint.value
-        self.progressBar.setThumbImage(UIImage(), for: .normal)
+        //self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
     
     
@@ -72,6 +77,8 @@ class DetailLyricsViewController: UIViewController {
                 self.playBtn.setTitle("▶️", for: .normal)
             }
         }
+        self.sing_Title.text = viewModel.titleText
+        self.singer.text = viewModel.singerText
     }
     
     
@@ -79,6 +86,10 @@ class DetailLyricsViewController: UIViewController {
     @IBAction func pausePlayer(_ sender: Any) {  //음악 정지,시작 버튼
         
         viewModel.musicPlay()
+    }
+    
+    @IBAction func returnMain(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func slideProgressBar(_ sender: UISlider) {  //음악 재생 위치 조절
@@ -112,7 +123,7 @@ extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegat
                     cell.lyrics.textColor = .blue
                 }
                 else{
-                    cell.lyrics.textColor = .black
+                    cell.lyrics.textColor = .lightGray
                 }
             }
             else{
@@ -120,13 +131,13 @@ extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegat
                     cell.lyrics.textColor = .blue
                 }
                 else{
-                    cell.lyrics.textColor = .black
+                    cell.lyrics.textColor = .lightGray
                 }
                 
             }
         }
         else{
-            cell.lyrics.textColor = .black
+            cell.lyrics.textColor = .lightGray
         }
         
         return cell
