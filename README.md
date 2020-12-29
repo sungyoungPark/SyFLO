@@ -20,14 +20,14 @@
   + Seekbar
   + Play/Stop 버튼
   
-## ■ 기존 flo 앱 이미지
+## ■ 기존 Flo 앱 이미지
 <div>
 <img src="image/floApp_lauchScreen.PNG" width="250" height="450">
 <img src="image/floApp_mainMusicScreen.PNG" width="250" height="450">
 <img src="image/floApp_lyricsScreen.PNG" width="250" height="450">
 </div>
 
-## ■ Syflo(클론 앱) 앱 이미지
+## ■ SyFlo(클론 앱) 앱 이미지
 <div>
 <img src="image/myApp_Launching.png" width="250" height="450">
 <img src="image/myApp_Main.png" width="250" height="450">
