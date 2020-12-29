@@ -26,6 +26,12 @@
 <img src="image/floApp_mainMusicScreen.PNG" width="250" height="450">
 <img src="image/floApp_lyricsScreen.PNG" width="250" height="450">
 </div>
+
+## ■ Syflo(클론 앱) 앱 이미지
+<div>
+<img src="image/myApp_Launching.png" width="250" height="450">
+<img src="image/myApp_Main.png" width="250" height="450">
+</div>
   
 ## 기능 요구 사항
 
