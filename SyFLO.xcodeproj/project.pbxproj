@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B530FA125668575006A626A /* SingerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B530FA025668575006A626A /* SingerTableViewCell.swift */; };
-		5B530FA325668614006A626A /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B530FA225668614006A626A /* TitleTableViewCell.swift */; };
-		5B530FA52566ABD2006A626A /* AlbumImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B530FA42566ABD2006A626A /* AlbumImageTableViewCell.swift */; };
 		5B530FA82566CCD5006A626A /* LyricsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B530FA72566CCD5006A626A /* LyricsTableViewCell.swift */; };
-		5B530FAA2566CCE9006A626A /* SeekBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B530FA92566CCE9006A626A /* SeekBarTableViewCell.swift */; };
-		5B530FAC2566CCF7006A626A /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B530FAB2566CCF7006A626A /* PlayerTableViewCell.swift */; };
 		5B5D7F36256595F0003E1BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D7F35256595F0003E1BE4 /* AppDelegate.swift */; };
 		5B5D7F38256595F0003E1BE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D7F37256595F0003E1BE4 /* SceneDelegate.swift */; };
 		5B5D7F3D256595F0003E1BE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B5D7F3B256595F0003E1BE4 /* Main.storyboard */; };
@@ -31,12 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B530FA025668575006A626A /* SingerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingerTableViewCell.swift; sourceTree = "<group>"; };
-		5B530FA225668614006A626A /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
-		5B530FA42566ABD2006A626A /* AlbumImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageTableViewCell.swift; sourceTree = "<group>"; };
 		5B530FA72566CCD5006A626A /* LyricsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsTableViewCell.swift; sourceTree = "<group>"; };
-		5B530FA92566CCE9006A626A /* SeekBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekBarTableViewCell.swift; sourceTree = "<group>"; };
-		5B530FAB2566CCF7006A626A /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		5B5D7F32256595F0003E1BE4 /* FLO_SY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLO_SY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5D7F35256595F0003E1BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B5D7F37256595F0003E1BE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,12 +60,7 @@
 		5B530F9F25666903006A626A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5B530FA225668614006A626A /* TitleTableViewCell.swift */,
-				5B530FA025668575006A626A /* SingerTableViewCell.swift */,
-				5B530FA42566ABD2006A626A /* AlbumImageTableViewCell.swift */,
 				5B530FA72566CCD5006A626A /* LyricsTableViewCell.swift */,
-				5B530FA92566CCE9006A626A /* SeekBarTableViewCell.swift */,
-				5B530FAB2566CCF7006A626A /* PlayerTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -248,23 +233,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B530FA82566CCD5006A626A /* LyricsTableViewCell.swift in Sources */,
-				5B530FAA2566CCE9006A626A /* SeekBarTableViewCell.swift in Sources */,
 				5B8ABFF8258697DF00D7CC3C /* transService.swift in Sources */,
 				5B5D7F36256595F0003E1BE4 /* AppDelegate.swift in Sources */,
 				5B5D7F5A2565A035003E1BE4 /* MusicModel.swift in Sources */,
 				5BBF3CA5256D92C100B41776 /* LyricsModel.swift in Sources */,
 				5B5D7F5425659F50003E1BE4 /* Dynamic.swift in Sources */,
 				5B8ABFEF258686C600D7CC3C /* DetailLyricsViewController.swift in Sources */,
-				5B530FAC2566CCF7006A626A /* PlayerTableViewCell.swift in Sources */,
 				5B5D7F5625659F76003E1BE4 /* BindingTextField.swift in Sources */,
 				5B5D7F38256595F0003E1BE4 /* SceneDelegate.swift in Sources */,
 				5B5D7F5125659F24003E1BE4 /* MusicPlayerViewModel.swift in Sources */,
 				5B8ABFF12586888200D7CC3C /* DetailLyricsViewModel.swift in Sources */,
-				5B530FA52566ABD2006A626A /* AlbumImageTableViewCell.swift in Sources */,
 				5B8ABFF525868F3C00D7CC3C /* MusicPlayerModel.swift in Sources */,
 				5BDA5B5F2567B6C4000CFB57 /* MainMusicViewController.swift in Sources */,
-				5B530FA325668614006A626A /* TitleTableViewCell.swift in Sources */,
-				5B530FA125668575006A626A /* SingerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

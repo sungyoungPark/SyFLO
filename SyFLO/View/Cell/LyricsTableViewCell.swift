@@ -12,16 +12,16 @@ class LyricsTableViewCell: UITableViewCell {
 
     
     @IBOutlet var lyrics: UILabel!
+    var fontSize = 20
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func setAutoLayout(){
+        // 사이즈가 텍스트에 맞게 조절.
+        lyrics.sizeToFit()
+        // 여러줄로 나눠질 때 워드 단위로 끊어지도록 설정.
+        lyrics.lineBreakMode = .byWordWrapping
+        // label이 여러줄을 가질 수 있도록 설정.
+        lyrics.numberOfLines = 0
+        lyrics.font = lyrics.font.withSize(CGFloat(fontSize))
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }

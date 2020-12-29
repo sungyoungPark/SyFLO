@@ -11,8 +11,10 @@ import UIKit
 class DetailLyricsViewController: UIViewController {
     
     var viewModel = DetailLyricsViewModel()
+    var lyricsFontSize = 20
     
     @IBOutlet var playBtn: UIButton!
+    @IBOutlet var lyricsSizeBtn: UIButton!
     
     @IBOutlet var sing_Title: UILabel!
     @IBOutlet var singer: UILabel!
@@ -24,21 +26,32 @@ class DetailLyricsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setBtn()
-        
         bindViewModel()
         
-        lyricsTV.delegate = self
-        lyricsTV.dataSource = self
+        setBtn()
+        setLyricsTV()
+        setProgressBar()
         
         self.navigationController?.isNavigationBarHidden = true
         
+      
+    }
+    
+    func setLyricsTV(){
+        lyricsTV.delegate = self
+        lyricsTV.dataSource = self
+        lyricsTV.estimatedRowHeight = 50
+        lyricsTV.rowHeight = UITableView.automaticDimension
+        lyricsTV.delegate = self
+    }
+    
+    func setProgressBar(){
         self.progressBar.maximumValue = viewModel.musicPlayer.endTimePoint
         self.progressBar.minimumValue = 0
         self.progressBar.value = viewModel.musicPlayer.playPoint.value
+        
         //self.progressBar.setThumbImage(UIImage(), for: .normal)
     }
-    
     
     func setBtn(){
         if(viewModel.musicPlayer.isPlaying.value){
@@ -101,6 +114,17 @@ class DetailLyricsViewController: UIViewController {
         
     }
     
+    @IBAction func changeLyricsSize(_ sender: UIButton) {
+        if(lyricsSizeBtn.titleLabel?.text == "×1"){
+            lyricsSizeBtn.setTitle("×2", for: .normal)
+            lyricsFontSize = 30
+        }
+        else{
+            lyricsSizeBtn.setTitle("×1", for: .normal)
+            lyricsFontSize = 20
+        }
+        lyricsTV.reloadData()
+    }
     
     
 }
@@ -114,9 +138,9 @@ extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "lyricsCell1", for: indexPath) as! LyricsTableViewCell
         
         cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
-        
+        cell.fontSize = lyricsFontSize
         cell.lyrics.text = viewModel.musicPlayer.lyrics_List![indexPath.row].lyric
-        
+        cell.setAutoLayout()
         if(viewModel.musicPlayer.isFirstLyric.value == true){
             if(viewModel.musicPlayer.isLastLyric.value == false){
                 if(indexPath.row == viewModel.musicPlayer.show_lyricIndex.value){  //현재 재생 중인 가사 위치
@@ -142,6 +166,7 @@ extension DetailLyricsViewController: UITableViewDataSource , UITableViewDelegat
         
         return cell
     }
+    
     
     
 }
