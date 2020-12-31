@@ -31,6 +31,7 @@
 <div>
 <img src="image/myApp_Launching.png" width="250" height="450">
 <img src="image/myApp_Main.png" width="250" height="450">
+<img src="image/myApp_lyricsScreen.png" width="250" height="450">
 </div>
   
 ## 기능 요구 사항
