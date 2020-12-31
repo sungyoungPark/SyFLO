@@ -15,6 +15,8 @@ class DetailLyricsViewController: UIViewController {
     
     @IBOutlet var playBtn: UIButton!
     @IBOutlet var lyricsSizeBtn: UIButton!
+    @IBOutlet var freeModeBtn: UIButton!
+    @IBOutlet var gotoLyricsBtn: UIButton!
     
     @IBOutlet var sing_Title: UILabel!
     @IBOutlet var singer: UILabel!
@@ -22,6 +24,8 @@ class DetailLyricsViewController: UIViewController {
     @IBOutlet var lyricsTV: UITableView!
     @IBOutlet var progressBar: UISlider!
     
+    var isActiveFreeMode = false
+    var isActiveGotoLyrics = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,11 @@ class DetailLyricsViewController: UIViewController {
         setBtn()
         setLyricsTV()
         setProgressBar()
+        
+        self.view.backgroundColor = .black  //바탕화면 검은색으로
+        self.navigationController?.navigationBar.barTintColor = .black //네비게이션 바 색깔 변경
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        // 네비게이션 바 타이틀 색깔 변경
         
         self.navigationController?.isNavigationBarHidden = true
         
@@ -55,10 +64,10 @@ class DetailLyricsViewController: UIViewController {
     
     func setBtn(){
         if(viewModel.musicPlayer.isPlaying.value){
-            self.playBtn.setTitle("⏹", for: .normal)
+            self.playBtn.setImage(UIImage(named: "stopBtn.png"), for: .normal)
         }
         else{
-            self.playBtn.setTitle("▶️", for: .normal)
+            self.playBtn.setImage(UIImage(named: "playBtn.png"), for: .normal)
         }
     }
     
@@ -84,11 +93,10 @@ class DetailLyricsViewController: UIViewController {
         }
         viewModel.musicPlayer.isPlaying.bind { (isPlaying) in
             if(isPlaying){
-                self.playBtn.setTitle("⏹", for: .normal)
+                self.playBtn.setImage(UIImage(named: "stopBtn.png"), for: .normal)
             }
             else{
-                self.playBtn.setTitle("▶️", for: .normal)
-            }
+                self.playBtn.setImage(UIImage(named: "playBtn.png"), for: .normal)            }
         }
         self.sing_Title.text = viewModel.titleText
         self.singer.text = viewModel.singerText
@@ -126,6 +134,27 @@ class DetailLyricsViewController: UIViewController {
         lyricsTV.reloadData()
     }
     
+    @IBAction func pressFreeModeBtn(_ sender: UIButton) {
+        if(isActiveFreeMode){
+            self.freeModeBtn.setImage(UIImage(named: "dis_crossHair.png"), for: .normal)
+            isActiveFreeMode = false
+        }
+        else{
+            self.freeModeBtn.setImage(UIImage(named: "crossHair.png"), for: .normal)
+            isActiveFreeMode = true
+        }
+    }
+    
+    @IBAction func pressGotoLyricsBtn(_ sender: UIButton) {
+        if(isActiveGotoLyrics){
+            self.gotoLyricsBtn.setImage(UIImage(named: "disableGoto.png"), for: .normal)
+            isActiveGotoLyrics = false
+        }
+        else{
+            self.gotoLyricsBtn.setImage(UIImage(named: "goto.png"), for: .normal)
+            isActiveGotoLyrics = true
+        }
+    }
     
 }
 

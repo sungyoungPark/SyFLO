@@ -62,10 +62,10 @@ class MainMusicViewController: UIViewController {
     
     func setBtn(){
         if(viewModel!.musicPlayer!.isPlaying.value){
-             self.playBtn.setTitle("⏹", for: .normal)
+            self.playBtn.setImage(UIImage(named: "stopBtn.png"), for: .normal)
          }
          else{
-             self.playBtn.setTitle("▶️", for: .normal)
+            self.playBtn.setImage(UIImage(named: "playBtn.png"), for: .normal)
          }
      }
     
@@ -99,10 +99,10 @@ class MainMusicViewController: UIViewController {
             }
             viewModel.musicPlayer?.isPlaying.bind { (isPlaying) in
                 if(isPlaying){
-                    self.playBtn.setTitle("⏹", for: .normal)
+                    self.playBtn.setImage(UIImage(named: "stopBtn.png"), for: .normal)
                 }
                 else{
-                    self.playBtn.setTitle("▶️", for: .normal)
+                    self.playBtn.setImage(UIImage(named: "playBtn.png"), for: .normal)
                 }
             }
             self.music_Title.text = viewModel.musicINFO?.title
@@ -152,14 +152,14 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
             cell.selectionStyle = .none  //셀 선택시 하이라이트 색 없애기
             if(viewModel?.musicPlayer?.isFirstLyric.value == true){
                 if(viewModel?.musicPlayer?.isLastLyric.value == true){
-                    cell.lyrics.textColor = .black
+                    cell.lyrics.textColor = .lightGray
                 }
                 else{
                     cell.lyrics.textColor = .blue
                 }
             }
             else{
-                cell.lyrics.textColor = .black
+                cell.lyrics.textColor = .lightGray
             }
         }
         
@@ -170,7 +170,7 @@ extension MainMusicViewController : UITableViewDataSource , UITableViewDelegate{
                 cell.lyrics.textColor = .blue
             }
             else{
-                cell.lyrics.textColor = .black
+                cell.lyrics.textColor = .lightGray
             }
             
         }
