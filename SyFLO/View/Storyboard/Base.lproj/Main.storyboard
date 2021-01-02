@@ -262,7 +262,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="61.333333333333336"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujl-pf-EvG">
-                                                <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="61.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="61.333333333333336"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQe-TD-qEn">
                                                         <rect key="frame" x="20" y="7.9999999999999982" width="28.666666666666671" height="20.333333333333329"/>
@@ -288,7 +288,8 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qe0-ag-3N5">
-                                                <rect key="frame" x="310.66666666666669" y="0.0" width="103.33333333333331" height="61.333333333333336"/>
+                                                <rect key="frame" x="331.33333333333331" y="0.0" width="82.666666666666686" height="61.333333333333336"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" title="X">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -297,14 +298,11 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Ujl-pf-EvG" firstAttribute="width" secondItem="iTl-6Y-8qV" secondAttribute="width" multiplier="0.75" id="elk-o5-iIl"/>
-                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzh-PB-Cer" userLabel="tv Stack View">
                                         <rect key="frame" x="0.0" y="61.333333333333314" width="414" height="572.66666666666674"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Qx-rI-47B">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Qx-rI-47B">
                                                 <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="572.66666666666663"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -423,6 +421,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="iTl-6Y-8qV" firstAttribute="height" secondItem="cHX-z5-KgZ" secondAttribute="height" multiplier="0.075" id="Eht-BI-n85"/>
+                                    <constraint firstItem="Qe0-ag-3N5" firstAttribute="width" secondItem="kch-q0-L3b" secondAttribute="width" id="NPm-O1-Cyv"/>
                                     <constraint firstItem="N4s-94-jRt" firstAttribute="height" secondItem="cHX-z5-KgZ" secondAttribute="height" multiplier="0.075" id="USW-BD-IDA"/>
                                     <constraint firstItem="jzh-PB-Cer" firstAttribute="height" secondItem="cHX-z5-KgZ" secondAttribute="height" multiplier="0.7" id="bfw-CZ-QLl"/>
                                 </constraints>
