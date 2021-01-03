@@ -51,7 +51,6 @@ class DetailLyricsViewController: UIViewController {
         lyricsTV.dataSource = self
         lyricsTV.estimatedRowHeight = 50
         lyricsTV.rowHeight = UITableView.automaticDimension
-        lyricsTV.delegate = self
     }
     
     func setProgressBar(){
