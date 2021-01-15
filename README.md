@@ -21,6 +21,9 @@
   + Play/Stop 버튼
   
 ## ■ 기존 Flo 앱 이미지
+
+![floSY](https://user-images.githubusercontent.com/55025822/104737284-61ec2700-5787-11eb-8745-3e853e0e7f68.gif)
+
 <div>
 <img src="image/floApp_lauchScreen.PNG" width="250" height="450">
 <img src="image/floApp_mainMusicScreen.PNG" width="250" height="450">
